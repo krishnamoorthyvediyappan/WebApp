@@ -27,6 +27,9 @@ pipeline {
     }
 
     stage('QA Certification') {
+      when {
+        branch 'testing'
+      }
       steps {
         echo 'Certify qa manually'
         input 'Do you wish to certify?'
