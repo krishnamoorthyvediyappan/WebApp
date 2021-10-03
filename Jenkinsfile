@@ -1,39 +1,51 @@
 pipeline {
   agent any
   stages {
-    stage('Dev Build') {
+    stage('Dev Code Pull') {
       steps {
-        echo 'Maven build done locally'
         echo 'Unit tests executed'
       }
     }
 
-    stage('Deploy to QA') {
+    stage('Dev Maven Build') {
       steps {
-        echo 'Deploy to qa'
+        echo 'Dev Maven Build'
       }
     }
 
-    stage('UI Testing (smoke)') {
+    stage('QA Deploy') {
       steps {
-        echo 'ui tyesty'
+        echo 'Deploy to QA'
       }
     }
 
-    stage('Deploy to UAT') {
+    stage('QA Tests') {
       steps {
-        echo 'Deploy to UAT AWS'
-        echo 'Notify UAT teams'
+        echo 'Web code pull and run test'
+        echo 'API code pull and run test'
       }
     }
 
-    stage('Certify UAT') {
+    stage('QA Certification') {
       steps {
-        echo 'certify'
+        echo 'Certify qa manually'
+        input 'Do you wish to certify?'
       }
     }
 
-    stage('Prod deplyment') {
+    stage('UAT Deploy') {
+      steps {
+        echo 'Deploy to UAT'
+      }
+    }
+
+    stage('UAT Certification') {
+      steps {
+        input 'Do you wish to certify ?'
+      }
+    }
+
+    stage('Prod Deploy') {
       steps {
         echo 'Deploy to prod'
       }
