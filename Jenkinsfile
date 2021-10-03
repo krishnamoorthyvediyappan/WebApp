@@ -20,9 +20,26 @@ pipeline {
     }
 
     stage('QA Tests') {
-      steps {
-        echo 'Web code pull and run test'
-        echo 'API code pull and run test'
+      parallel {
+        stage('QA Tests') {
+          steps {
+            echo 'Web code pull and run test'
+            echo 'API code pull and run test'
+          }
+        }
+
+        stage('Web code pull and run test') {
+          steps {
+            echo 'Web code pull and run test'
+          }
+        }
+
+        stage('API code pull and run test') {
+          steps {
+            echo 'API code pull and run test'
+          }
+        }
+
       }
     }
 
